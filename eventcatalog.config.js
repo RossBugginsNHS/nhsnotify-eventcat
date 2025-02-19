@@ -30,5 +30,23 @@ export default {
     limit: 20
   },
   // required random generated id used by eventcatalog
-  cId: 'f88df989-a646-4476-9e3b-d32e52c822d4'
-}
+  cId: 'f88df989-a646-4476-9e3b-d32e52c822d4',
+  generators: [
+    // Add single AsyncAPI file to a domain
+
+    // Add many AsyncAPI files to a domain
+    [
+      '@eventcatalog/generator-asyncapi',
+      {
+        licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
+        services: [
+          // Add AsyncAPI file by URL
+          { path: "https://raw.githubusercontent.com/event-catalog/eventcatalog-asyncapi-example/refs/heads/main/asyncapi-files/payment-service.yml", id: "Payment Service"}
+        ],
+        domain: { id: 'payment', name: 'Payment', version: '0.0.1' },
+        // Run in debug mode, for extra output, if your AsyncAPI fails to parse, it will tell you why
+        debug: true
+      },
+    ],
+  ],
+};
