@@ -31,20 +31,39 @@ export default {
   },
   // required random generated id used by eventcatalog
   cId: 'f88df989-a646-4476-9e3b-d32e52c822d4',
-  generators: [
-    // Add single AsyncAPI file to a domain
 
-    // Add many AsyncAPI files to a domain
+  generators: [
     [
       '@eventcatalog/generator-asyncapi',
       {
         licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
         services: [
-          // Add AsyncAPI file by URL
-          { path: "https://raw.githubusercontent.com/event-catalog/eventcatalog-asyncapi-example/refs/heads/main/asyncapi-files/payment-service.yml", id: "Payment Service"}
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/orders-service.yml", id: 'Orders Service' },
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/order-fulfillment-service.yml", id: 'Order Fulfillment' },
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/inventory-service.yml", id: 'Inventory Service' },
+        ],
+        domain: { id: 'orders', name: 'Orders', version: '0.0.1' },
+      },
+    ],
+    [
+      '@eventcatalog/generator-asyncapi',
+      {
+        licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
+        services: [
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/payment-service.yml", id: 'Payment Service' },
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/fraud-detection-service.yml", id: 'Fraud Detection' },
         ],
         domain: { id: 'payment', name: 'Payment', version: '0.0.1' },
-        // Run in debug mode, for extra output, if your AsyncAPI fails to parse, it will tell you why
+      },
+    ],
+    [
+      '@eventcatalog/generator-asyncapi',
+      {
+        licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
+        services: [
+          { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/user-service.yml", id: 'User Service' },
+        ],
+        domain: { id: 'user-domain', name: 'User Domain', version: '0.0.1' },
         debug: true
       },
     ],
