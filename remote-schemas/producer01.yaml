@@ -148,12 +148,17 @@ components:
         $ref: '#/components/schemas/dimLightPayload'
   schemas:
     lightMeasuredPayloadCloudEvent:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/sentAt'            
-      additionalProperties:
-          $ref: 'https://raw.githubusercontent.com/cloudevents/spec/refs/heads/main/cloudevents/formats/cloudevents.json'      
+      allOf:
+        - type: object         
+          properties:
+            data:
+              $ref: '#/components/schemas/lightMeasuredPayload'   
+            dataschema:
+              type: string
+              enum: 
+                - '#/components/schemas/sentAt'
+        - $ref: 'https://raw.githubusercontent.com/cloudevents/spec/refs/heads/main/cloudevents/formats/cloudevents.json'      
+   
 
     lightMeasuredPayload:
       type: object
