@@ -47,7 +47,7 @@ channels:
     address: smartylighting.streetlights.1.0.event.{streetlightId}.lighting.measured
     messages:
       lightMeasured:
-        $ref: '#/components/messages/lightMeasured'
+        $ref: '#/components/messages/lightMeasuredPayloadCloudEvent'
     description: The topic on which measured values may be produced and consumed.
     parameters:
       streetlightId:
