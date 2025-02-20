@@ -32,40 +32,16 @@ export default {
   // required random generated id used by eventcatalog
   cId: 'f88df989-a646-4476-9e3b-d32e52c822d4',
 
-  // generators: [
-  //   [
-  //     '@eventcatalog/generator-asyncapi',
-  //     {
-  //       licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
-  //       services: [
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/orders-service.yml", id: 'Orders Service' },
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/order-fulfillment-service.yml", id: 'Order Fulfillment' },
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/inventory-service.yml", id: 'Inventory Service' },
-  //       ],
-  //       domain: { id: 'orders', name: 'Orders', version: '0.0.1' },
-  //     },
-  //   ],
-  //   [
-  //     '@eventcatalog/generator-asyncapi',
-  //     {
-  //       licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
-  //       services: [
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/payment-service.yml", id: 'Payment Service' },
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/fraud-detection-service.yml", id: 'Fraud Detection' },
-  //       ],
-  //       domain: { id: 'payment', name: 'Payment', version: '0.0.1' },
-  //     },
-  //   ],
-  //   [
-  //     '@eventcatalog/generator-asyncapi',
-  //     {
-  //       licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
-  //       services: [
-  //         { path: "https://raw.githubusercontent.com/event-catalog/generators/refs/heads/main/examples/generator-asyncapi/basic/asyncapi-files/user-service.yml", id: 'User Service' },
-  //       ],
-  //       domain: { id: 'user-domain', name: 'User Domain', version: '0.0.1' },
-  //       debug: true
-  //     },
-  //   ],
-  // ],
+  generators: [
+    [
+      '@eventcatalog/generator-asyncapi',
+      {
+        licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
+        services: [
+          { path: "https://raw.githubusercontent.com/RossBugginsNHS/nhsnotify-eventcat/refs/heads/main/remote-schemas/producer01.yaml", id: 'Light Switches Service' },
+        ],
+        domain: { id: 'homeautomation', name: 'Home Automation', version: '0.0.1' },
+      },
+    ],
+  ],
 };
