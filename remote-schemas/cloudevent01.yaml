@@ -1,0 +1,18 @@
+asyncapi: 3.0.0
+id: urn:com.asyncapi.examples.user
+info:
+  title: User service
+  version: 1.6.3
+channels:
+  user/signedup:
+    publish:
+      message:
+        schemaFormat: 'application/cloudevents+json; version=0.2; charset=utf-8'
+        payload:
+          type: object
+          properties:
+            fullName:
+              type: string
+            email:
+              type: string
+              format: email
