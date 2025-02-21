@@ -38,9 +38,9 @@ export default {
       {
         licenseKey: 'Z7Z5-1J5U-PA3C-FOAA-O25F-1R67',
         services: [
-          { path: "https://raw.githubusercontent.com/RossBugginsNHS/nhsnotify-eventcat/refs/heads/main/remote-schemas/producer01.yaml", id: 'Light Switches Service' },
+          { path: "https://raw.githubusercontent.com/RossBugginsNHS/nhsnotify-eventcat/refs/heads/main/remote-schemas/producer01.yaml", id: 'Notify Message Service' },
         ],
-        domain: { id: 'homeautomation', name: 'Home Automation', version: '0.0.1' },
+        domain: { id: 'notifymessages', name: 'Notify Messages', version: '0.0.1' },
       },
     ],
   ],

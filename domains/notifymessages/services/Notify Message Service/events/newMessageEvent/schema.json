@@ -1,0 +1,200 @@
+{
+    "allOf": [
+        {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "lumens": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "Light intensity measured in lumens.",
+                            "x-parser-schema-id": "<anonymous-schema-1>"
+                        },
+                        "sentAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date and time when the message was sent.",
+                            "x-parser-schema-id": "sentAt"
+                        }
+                    },
+                    "x-parser-schema-id": "lightMeasuredPayload"
+                },
+                "dataschema": {
+                    "type": "string",
+                    "enum": [
+                        "#/components/schemas/sentAt"
+                    ],
+                    "x-parser-schema-id": "<anonymous-schema-2>"
+                }
+            },
+            "x-parser-schema-id": "lightMeasuredPayloadData"
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "description": "CloudEvents Specification JSON Schema",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "source": {
+                    "type": "string",
+                    "format": "uri-reference",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "specversion": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "datacontenttype": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "dataschema": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uri",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-8>"
+                },
+                "subject": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-9>"
+                },
+                "time": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-10>"
+                },
+                "data": {
+                    "type": [
+                        "object",
+                        "string",
+                        "number",
+                        "array",
+                        "boolean",
+                        "null"
+                    ],
+                    "x-parser-schema-id": "<anonymous-schema-11>"
+                },
+                "data_base64": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "contentEncoding": "base64",
+                    "x-parser-schema-id": "<anonymous-schema-12>"
+                }
+            },
+            "required": [
+                "id",
+                "source",
+                "specversion",
+                "type"
+            ],
+            "definitions": {
+                "iddef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "sourcedef": {
+                    "type": "string",
+                    "format": "uri-reference",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "specversiondef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "typedef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "datacontenttypedef": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "dataschemadef": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uri",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-8>"
+                },
+                "subjectdef": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-9>"
+                },
+                "timedef": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "minLength": 1,
+                    "x-parser-schema-id": "<anonymous-schema-10>"
+                },
+                "datadef": {
+                    "type": [
+                        "object",
+                        "string",
+                        "number",
+                        "array",
+                        "boolean",
+                        "null"
+                    ],
+                    "x-parser-schema-id": "<anonymous-schema-11>"
+                },
+                "data_base64def": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "contentEncoding": "base64",
+                    "x-parser-schema-id": "<anonymous-schema-12>"
+                }
+            },
+            "x-parser-schema-id": "cloudEvent"
+        }
+    ],
+    "x-parser-schema-id": "lightMeasuredPayloadCloudEvent"
+}
