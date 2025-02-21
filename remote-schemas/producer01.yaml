@@ -1,11 +1,10 @@
 asyncapi: 3.0.0
 info:
-  title: Streetlights Kafka API
+  title: Messages App
   version: 1.0.0
   description: |-
     The Smartylighting Streetlights API allows you to remotely manage the city
     lights.
-    ### Check out its awesome features:
 
     * Turn a specific streetlight on/off 🌃
     * Dim a specific streetlight 😎
@@ -42,110 +41,38 @@ servers:
         description: This server is a remote server. Not exposed by the application
       - name: visibility:private
         description: This resource is private and only available to certain users
+
+
 channels:
-  lightingMeasured:
-    address: smartylighting.streetlights.1.0.event.{streetlightId}.lighting.measured
+  newMessageEventChannel:
     messages:
-      lightMeasured:
-        $ref: '#/components/messages/lightMeasuredPayloadCloudEvent'
-    description: The topic on which measured values may be produced and consumed.
-    parameters:
-      streetlightId:
-        $ref: '#/components/parameters/streetlightId'
-  lightTurnOn:
-    address: smartylighting.streetlights.1.0.action.{streetlightId}.turn.on
-    messages:
-      turnOn:
-        $ref: '#/components/messages/turnOnOff'
-    parameters:
-      streetlightId:
-        $ref: '#/components/parameters/streetlightId'
-  lightTurnOff:
-    address: smartylighting.streetlights.1.0.action.{streetlightId}.turn.off
-    messages:
-      turnOff:
-        $ref: '#/components/messages/turnOnOff'
-    parameters:
-      streetlightId:
-        $ref: '#/components/parameters/streetlightId'
-  lightsDim:
-    address: smartylighting.streetlights.1.0.action.{streetlightId}.dim
-    messages:
-      dimLight:
-        $ref: '#/components/messages/dimLight'
-    parameters:
-      streetlightId:
-        $ref: '#/components/parameters/streetlightId'
+      newMessageEvent:
+        $ref: '#/components/messages/newMessageCloudEvent'
+    description: New Message Event Channel
+  
 operations:
-  receiveLightMeasurement:
-    action: receive
-    channel:
-      $ref: '#/channels/lightingMeasured'
-    summary: Inform about environmental lighting conditions of a particular streetlight.
-    traits:
-      - $ref: '#/components/operationTraits/kafka'
-    messages:
-      - $ref: '#/channels/lightingMeasured/messages/lightMeasured'
-  turnOn:
+  sendLightMeasurement:
     action: send
     channel:
-      $ref: '#/channels/lightTurnOn'
+      $ref: '#/channels/newMessageEventChannel'
+    summary: Operation sending a new message event.
     traits:
       - $ref: '#/components/operationTraits/kafka'
     messages:
-      - $ref: '#/channels/lightTurnOn/messages/turnOn'
-  turnOff:
-    action: send
-    channel:
-      $ref: '#/channels/lightTurnOff'
-    traits:
-      - $ref: '#/components/operationTraits/kafka'
-    messages:
-      - $ref: '#/channels/lightTurnOff/messages/turnOff'
-  dimLight:
-    action: send
-    channel:
-      $ref: '#/channels/lightsDim'
-    traits:
-      - $ref: '#/components/operationTraits/kafka'
-    messages:
-      - $ref: '#/channels/lightsDim/messages/dimLight'
+      - $ref: '#/channels/newMessageEventChannel/messages/newMessageEvent'
+
 components:
   messages:
-    lightMeasuredPayloadCloudEvent:
-      name: lightMeasuredPayloadCloudEvent
-      title: Light measured Cloud Event
+   newMessageCloudEvent:
+      name: newMessageEventMessage
+      title: New Message Received
       summary: Inform about environmental lighting conditions of a particular
         streetlight.
       contentType: application/json
       payload:
         $ref: '#/components/schemas/lightMeasuredPayloadCloudEvent'
-    lightMeasured:
-      name: lightMeasured
-      title: Light measured
-      summary: Inform about environmental lighting conditions of a particular
-        streetlight.
-      contentType: application/json
-      traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
-      payload:
-        $ref: '#/components/schemas/lightMeasuredPayload'
-    turnOnOff:
-      name: turnOnOff
-      title: Turn on/off
-      summary: Command a particular streetlight to turn the lights on or off.
-      traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
-      payload:
-        $ref: '#/components/schemas/turnOnOffPayload'
-    dimLight:
-      name: dimLight
-      title: Dim light
-      summary: Command a particular streetlight to dim the lights.
-      traits:
-        - $ref: '#/components/messageTraits/commonHeaders'
-      payload:
-        $ref: '#/components/schemas/dimLightPayload'
+
+  
   schemas:
     lightMeasuredPayloadCloudEvent:
       allOf:
@@ -175,31 +102,14 @@ components:
           description: Light intensity measured in lumens.
         sentAt:
           $ref: '#/components/schemas/sentAt'
-    turnOnOffPayload:
-      type: object
-      properties:
-        command:
-          type: string
-          enum:
-            - 'on'
-            - 'off'
-          description: Whether to turn on or off the light.
-        sentAt:
-          $ref: '#/components/schemas/sentAt'
-    dimLightPayload:
-      type: object
-      properties:
-        percentage:
-          type: integer
-          description: Percentage to which the light should be dimmed to.
-          minimum: 0
-          maximum: 100
-        sentAt:
-          $ref: '#/components/schemas/sentAt'
+    
     sentAt:
       type: string
       format: date-time
       description: Date and time when the message was sent.
+
+
+
   securitySchemes:
     saslScram:
       type: scramSha256
